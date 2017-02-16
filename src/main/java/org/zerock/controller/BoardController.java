@@ -34,6 +34,13 @@ public class BoardController {
 		logger.info("register post...............");
 		logger.info(board.toString());
 		
+		if(board.getTitle().isEmpty()||board.getContent().isEmpty()||board.getWriter().isEmpty()){
+			rttr.addFlashAttribute("error", "Please enter all items");
+			
+			return "/sboard/register";
+		}
+		System.out.println("내용: "+board.getWriter());
+		System.out.println("제목: "+board.getTitle());
 		service.regist(board);
 		
 		rttr.addFlashAttribute("result", "success");
